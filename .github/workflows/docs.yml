@@ -3,13 +3,7 @@ on:
   push:
     branches:
       - develop
-      - feature/*
       - main/*
-      - bugfix/*
-      - release/*
-      - docs/*
-    paths:
-      - docs/**
   pull_request:
     types: [opened, reopened, synchronize]
     paths:
