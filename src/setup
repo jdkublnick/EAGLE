@@ -4,7 +4,7 @@
 
 set -aeuo pipefail
 
-CHANNELS=(-c ufs-community -c conda-forge)
+CHANNELS=(-c ufs-community)
 INSTALLDIR=${INSTALLDIR:-$PWD/conda}
 UWTOOLS="uwtools=2.13.*"
 
@@ -177,7 +177,7 @@ conda_create_wxvx() {
     wxvx=0.7.*
   )
   test -v EAGLE_DEV && pkgs+=($(devpkgs))
-  args=($name -c oar-gsl -c conda-forge ${pkgs[@]})
+  args=($name -c oar-gsl ${pkgs[@]})
   if conda_env_exists $name; then
     conda_install ${args[@]}
   else
