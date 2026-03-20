@@ -13,16 +13,9 @@ UWTOOLS="uwtools=2.13.*"
 
 cachedir() {
   (
-    conda_activate_root
+    conda_activate base
     echo $CONDA_PREFIX/cache
   )
-}
-
-conda_activate_root() {
-  source $INSTALLDIR/etc/profile.d/conda.sh
-  set +eu
-  conda activate
-  set -eu
 }
 
 conda_activate() {
@@ -41,7 +34,7 @@ conda_create() {
   local name
   name=$1
   shift
-  conda_activate_root
+  conda_activate base
   msg Creating environment: $name
   conda create -y -q "${CHANNELS[@]}" -n $name $* $UWTOOLS
   (
@@ -195,7 +188,7 @@ conda_create_wxvx() {
 conda_env_exists() {
   name=$1
   (
-    conda_activate_root
+    conda_activate base
     conda env list --json | jq -r .envs_details[].name | grep -q "^${name}$"
     test $? -eq 0 && msg Found existing conda environment: $name
   )
