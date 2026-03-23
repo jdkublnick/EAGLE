@@ -77,7 +77,7 @@ jobs:
           set -euo pipefail
           cd "${GITHUB_WORKSPACE}/src"
           export SETVARS_CALL=${SETVARS_CALL:-0}
-          PERSIST="/scratch4/NAGAPE/epic/role-epic/miniconda.bak"
+          PERSIST="/scratch4/NAGAPE/epic/role-epic/miniconda"
 
           if [ ! -f "${PERSIST}/etc/profile.d/conda.sh" ]; then
             echo "Persistent conda not found at ${PERSIST}."
@@ -106,7 +106,7 @@ jobs:
         env:
           PR_NUM: ${{ github.event.pull_request.number }}
           SHA: ${{ github.event.pull_request.head.sha }}
-          INSTALLDIR: /scratch4/NAGAPE/epic/role-epic/miniconda.bak
+          INSTALLDIR: /scratch4/NAGAPE/epic/role-epic/miniconda
         run: |
           set -euo pipefail
           export SETVARS_CALL=${SETVARS_CALL:-0}
