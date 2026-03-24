@@ -31,6 +31,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
+          exclude_from_clean: 'src/conda'
+          clean: true
 
       - name: Gate on nested_eagle/ or src/ changes
         id: gate
