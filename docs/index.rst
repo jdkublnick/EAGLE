@@ -17,8 +17,9 @@ Table of Contents
 ###################
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: User Guide
+   :numbered:
 
    quickstart
    runtime_environment

@@ -1,11 +1,11 @@
 .. _Configuration:
 
-=================
+==============================================================================
 Configuration
-=================
+==============================================================================
 
 Config Creation
--------------------------
+==============================================================================
 
 The final EAGLE YAML config is created by composing a base config together with one or more fragments 
 providing values for specific platforms, use cases, etc. The command ``make config compose=a:b:c`` would 
@@ -17,7 +17,7 @@ edited for experiment-specific requirements.
 For advanced use cases, for example for composing configs in arbitrary locations, the underlying ``uwtools`` 
 command can be used. In the ``src/`` directory:
 
-.. code-block:: console
+.. code-block:: bash
 
     source conda/etc/profile.d/conda.sh
     conda activate base
@@ -27,64 +27,80 @@ command can be used. In the ``src/`` directory:
 Individual sections of the config will be discussed in detail below.
 
 Config Description
--------------------------
+==============================================================================
 
 The following subsections describe various parts of the EAGLE YAML config.
 
 Some configuration parameters are common across ``uwtools``-based component drivers and occur in multiple 
 configuration blocks:
-- The :ref:`execution <uwtools:execution_yaml>` block provides
-information required to correctly execute the component.
-- The :ref:`platform <uwtools:platform_yaml>` block provides
-information about the system EAGLE is running on.
-- The ``rundir:`` parameter specifies where driver runtime assets will be created.
+
+``execution``
+   The :ref:`execution <uwtools:execution_yaml>` block provides
+   information required to correctly execute the component.
+
+``platform``
+   The :ref:`platform <uwtools:platform_yaml>` block provides
+   information about the system EAGLE is running on.
+
+``rundir``
+   The ``rundir:`` parameter specifies where driver runtime assets will be created.
 
 Additionally, many configuration blocks include a ``common:`` block, which provides parameters shared by several configurations, to avoid unnecessary repetition.
 
 app
--------------------------
+------------------------------------------------------------------------------
 
 This block provides various global configuration parameters for the application, especially those thought most likely to 
 require configuration by users.
 
 grids_and_meshes
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``GridsAndMeshes`` driver.
 
-- The ``filenames:`` block provides paths to data files created by this step.
+``filenames``
+   The ``filenames:`` block provides paths to data files created by this step.
 
 inference
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``Inference`` driver.
 
-- The ``anemoi:`` block provides the YAML config for the :ref:`anemoi-inference <anemoi-inference:index-page>` component.
-- The ``checkpoint_dir:`` parameter specifies the location of the checkpoints created by the training step.
+``anemoi``
+   The ``anemoi:`` block provides the YAML config for the :ref:`anemoi-inference <anemoi-inference:index-page>` component.
+
+``checkpoint_dir``
+   The ``checkpoint_dir:`` parameter specifies the location of the checkpoints created by the training step.
 
 platform
--------------------------
+------------------------------------------------------------------------------
 
 In the EAGLE base config, this ``uwtools``-required parameter delegates to ``app.platform``.
 
 prewxvx
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``PreWXVX`` driver.
 
-- This driver executes the :ref:`Postprocessing <Postprocessing>` component.
-- The ``global:`` and ``lam:`` blocks provide configurations for global and limited-area extents, respectively, each borrowing from ``common:``. Their ``prewxvx:`` sub-blocks are ultimately passed to the ``PreWXVX`` driver as its runtime configuration.
+``component``
+   This driver executes the :ref:`Postprocessing <Postprocessing>` component.
+
+``global`` and ``lam``
+   The ``global:`` and ``lam:`` blocks provide configurations for global and limited-area extents, respectively, each borrowing from ``common:``. Their ``prewxvx:`` sub-blocks are ultimately passed to the ``PreWXVX`` driver as its runtime configuration.
 
 training
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``Training`` driver.
 
-- The ``anemoi:`` block provides the YAML config for the :ref:`anemoi-training <anemoi-training:index-page>` component.
-- The ``remove:`` block specifies values from the default configurations :ref:`generated by Anemoi <anemoi-training:generating user config files>` that should be removed at execution time, via :ref:`command-line config overrides <anemoi-training:command-line config overrides>`.
+``anemoi``
+   The ``anemoi:`` block provides the YAML config for the :ref:`anemoi-training <anemoi-training:index-page>` component.
+
+``remove``
+   The ``remove:`` block specifies values from the default configurations :ref:`generated by Anemoi <anemoi-training:generating user config files>` that should be removed at execution time, via :ref:`command-line config overrides <anemoi-training:command-line config overrides>`.
 
 ufs2arco
--------------------------
+------------------------------------------------------------------------------
 
 This block provides general configuration parameters for the :ufs2arco:`ufs2arco <>` component.
 This configuration is used as a source for default/common configuration parameters, which are supplemented by the ``Zarr`` 
@@ -98,32 +114,40 @@ place to define values that need to be shared and kept in sync across pipeline s
 modified by users like values in the ``app:`` block.
 
 vx
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``VX`` driver.
 
-- This driver executes the :ref:`Verify Model Performance <VerifyModelPerformance>` component.
-- The ``grid2grid:`` block provides configuration for running ``wxvx`` with MET's :ref:`grid_stat <met:grid-stat>` tool to verify against gridded analyses. Sub-blocks ``global:`` and ``lam:`` provide configuration refinements for verifying global and limited-area grids, respectively.
-- The ``grid2obs:`` block provides configuration for running ``wxvx`` with MET's :ref:`point_stat <met:point-stat>` tool to verify against point observations. Sub-blocks ``global:`` and ``lam:`` provide configuration refinements for verifying global and limited-area grids, respectively.
+``component``
+   This driver executes the :ref:`Verify Model Performance <VerifyModelPerformance>` component.
+
+``grid2grid``
+   The ``grid2grid:`` block provides configuration for running ``wxvx`` with MET's :ref:`grid_stat <met:grid-stat>` tool to verify against gridded analyses. Sub-blocks ``global:`` and ``lam:`` provide configuration refinements for verifying global and limited-area grids, respectively.
+
+``grid2obs``
+   The ``grid2obs:`` block provides configuration for running ``wxvx`` with MET's :ref:`point_stat <met:point-stat>` tool to verify against point observations. Sub-blocks ``global:`` and ``lam:`` provide configuration refinements for verifying global and limited-area grids, respectively.
 
 zarrs
--------------------------
+------------------------------------------------------------------------------
 
 Configuration for the ``Zarr`` driver.
 
-- This driver executes the :ufs2arco:`ufs2arco <>` component.
-- The ``gfs:`` and ``hrrr:`` sub-blocks provide refinements for ingesting GFS and HRRR data, respectively, for EAGLE.
+``component``
+   This driver executes the :ufs2arco:`ufs2arco <>` component.
+
+``gfs`` and ``hrrr``
+   The ``gfs:`` and ``hrrr:`` sub-blocks provide refinements for ingesting GFS and HRRR data, respectively, for EAGLE.
 
 .. _ConfigRealization:
 
 Config Realization
--------------------------
+==============================================================================
 
 EAGLE YAML configs contain a variety of Jinja2 expressions that are normally resolved by the various pipeline 
 steps at run time. Sometimes it can be helpful to resolve these references ("realize" the config in ``uwtools`` terms) 
 in advance, to get a better understanding of the final configuration parameters. To do so, run:
 
-.. code-block:: console
+.. code-block:: bash
 
     make realize config=eagle.yaml
 
@@ -137,11 +161,11 @@ component using a particular config block.
 .. _ConfigValidation:
 
 Config Validation
--------------------------
+==============================================================================
 
 To validate the EAGLE YAML config:
 
-.. code-block:: console
+.. code-block:: bash
 
     make validate config=eagle.yaml
 

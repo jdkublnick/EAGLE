@@ -58,11 +58,9 @@ rst_prolog = """
 # -- Options for intersphinx extension ---------------------------------------
 
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
     "uwtools": ("https://uwtools.readthedocs.io/en/stable/", None),
     "anemoi-inference": ("https://anemoi.readthedocs.io/projects/inference/en/latest/", None),
     "anemoi-training": ("https://anemoi.readthedocs.io/projects/training/en/latest/", None),
-    "ufs2arco": ("https://ufs2arco.readthedocs.io/en/latest/", None),
     "met": ("https://metplus.readthedocs.io/projects/met/en/latest/", None),
 }
 
@@ -71,12 +69,7 @@ intersphinx_mapping = {
 
 extlinks_detect_hardcoded_links = True
 extlinks = {
-    "eagle-repo": ("https://github.com/NOAA-EPIC/EAGLE/%s", "%s"),
-    "uwtools": ("https://uwtools.readthedocs.io/en/stable/%s", "%s"),
-    "anemoi-inference": ("https://anemoi.readthedocs.io/projects/inference/en/latest/%s", "%s"),
-    "anemoi-training": ("https://anemoi.readthedocs.io/projects/training/en/latest/%s", "%s"),
     "ufs2arco": ("https://ufs2arco.readthedocs.io/en/latest/%s", "%s"),
-    "met": ("https://metplus.readthedocs.io/projects/met/en/latest/%s", "%s"),
 }
 
 
@@ -93,8 +86,6 @@ linkcheck_ignore = []
 
 html_theme = "sphinx_rtd_theme"
 
-html_logo = "https://github.com/ufs-community/ufs/wiki/images/ufs-epic-logo.png"
-
 html_theme_options = {
     "navigation_depth": 8,
 }
@@ -102,7 +93,8 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ["_static"]
+html_static_path = ["_static"]
+html_css_files = ["custom.css", "theme_overrides.css"]
 
 
 # -- Options for EPUB output -------------------------------------------------
