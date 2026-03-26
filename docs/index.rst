@@ -21,30 +21,30 @@ Table of Contents
    :caption: User Guide
    :numbered:
 
-   quickstart
-   runtime_environment
-   configuration
-   drivers
+   user_guide/quickstart
+   user_guide/runtime_environment
+   user_guide/configuration
+   user_guide/drivers
 
 .. toctree::
    :maxdepth: 1
    :caption: ML Pipeline Overview
 
-   data_creation
-   train_a_model
-   inference
-   postprocessing
-   verification
+   ml_pipeline_overview/data_creation
+   ml_pipeline_overview/train_a_model
+   ml_pipeline_overview/inference
+   ml_pipeline_overview/postprocessing
+   ml_pipeline_overview/verification
 
 .. toctree::
    :maxdepth: 1
    :caption: EAGLE Models
 
-   nested_eagle
+   eagle_models/nested_eagle
 
 .. toctree::
    :maxdepth: 1
    :caption: Community
 
-   contributing
-   support
+   community/contributing
+   community/support
