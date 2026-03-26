@@ -12,11 +12,11 @@ nested model with lower resolution global data and high resolution over an area 
    :width: 75%
    :align: center
 
-.. centered:: Overview of the Nested-Eagle domain
+.. centered:: Overview of the Nested-EAGLE domain
 
 Nested-EAGLE configurations were provided by Tim Smith at NOAA Physical Sciences Laboratory.
 
-Version 1 of Nested-Eagle was trained with the following configurations:
+Version 1 of Nested-EAGLE was trained with the following configurations:
 
 * Data
 

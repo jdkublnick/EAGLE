@@ -5,23 +5,23 @@ Create Training Data
 ufs2arco Overview
 --------------------------------------------------
 
-We use ufs2arco to generate training, validation, and test datasets. The ufs2arco python package preprocesses large-scale 
+We use ufs2arco to generate training, validation, and test datasets. The ufs2arco Python package preprocesses large-scale 
 atmospheric datasets for machine learning and scientific analysis. At a high level, the ufs2arco pipeline loads and transforms 
-raw meteorological data into an Analysis Ready, Cloud Optimized (ARCO) zarr format.
+raw meteorological data into an Analysis Ready, Cloud Optimized (ARCO) Zarr format.
 
 The workflow is built around three key components:
 
     * Data Sources: Input datasets from systems such as NOAA GFS and HRRR or other forecast/reanalysis archives
-    * Transforms: User-defined processing steps such as regridding, subsetting, can be applied
+    * Transforms: User-defined processing steps such as regridding and subsetting, can be applied
     * Targets: Output data stored in Zarr format
         
-        * base: A general format for scientific analysis with clear variable and dimensions
+        * base: A general format for scientific analysis with clear variables and dimensions
         * anemoi: A layout tailored for machine learning workflows, compatible with the Anemoi framework
 
 Overall, ufs2arco enables flexible, scalable, and fast preparation of large meteorological datasets for both research 
 and machine learning modeling purposes.
 
-To get started, create a recipe.yaml. A simplified example of a `recipe.yaml` could be as follows:
+To get started, create a ``recipe.yaml``. A simplified example of a ``recipe.yaml`` could be as follows:
 
 .. code-block:: yaml
 

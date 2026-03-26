@@ -14,7 +14,7 @@ See `anemoi-inference documentation <https://anemoi.readthedocs.io/projects/infe
 Helpful quick tips for using anemoi-inference
 --------------------------------------------------
 
-anemoi-inference requires a yaml configuration to run via CLI. A simplified yaml configuration looks like:
+anemoi-inference requires a YAML configuration to run via CLI. A simplified YAML configuration looks like:
 
 .. code-block:: yaml
 
@@ -28,4 +28,4 @@ anemoi-inference requires a yaml configuration to run via CLI. A simplified yaml
     # lots of output options (see anemoi-inference documentation)
     output: 2026=01-01T00.240hr.nc
 
-This simple setup will sucessfully exectute inference.
+This simple setup will sucessfully execute inference.

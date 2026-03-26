@@ -6,13 +6,13 @@ eagle-tools Overview
 -------------------------
 
 We use the eagle-tools library for postprocessing inference and visualizing model performance. The eagle-tools library 
-provides command-line utilties that are all configured via yaml files.
+provides command-line utilties that are all configured via YAML files.
 
 This library currently supports:
 
     * Running anemoi-inference across many initial conditions at scale (e.g. over a validation set)
     * Postprocess inference output into a format ready for the ``wxvx`` package
-    * Computing aggregated error metrics such as RMSE and MAE, which preserving the initial condition dimension
+    * Computing aggregated error metrics such as RMSE and MAE, while preserving the initial condition dimension
     * Visualizing spatial error (RMSE and MAE) across lead times
     * Computing the power spectra
     * Visualizing predictions alongside targets (truth) through figures and movies (GIF)
