@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "EAGLE"
-copyright = "2025, NOAA EPIC"
+project = "eagle"
+copyright = "2025, eagle contributors"
 author = "eagle contributors"
 
 version = "main"
