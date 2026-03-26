@@ -1,6 +1,8 @@
-=================
+.. _Drivers:
+
+==============================================================================
 Drivers
-=================
+==============================================================================
 
 The various software components required by EAGLE are executed by ``uwtools`` drivers implemented as Python 
 modules under ``src/eagle/``. By default, the targets in ``src/Makefile`` invoke drivers' most comprehensive 
@@ -11,8 +13,13 @@ than full execution of the driver, which can be useful during development and de
 To request a specific task, add a ``task=`` clause to the appropriate ``make`` target. To see a list of available 
 tasks, specify ``task=?``.
 
-For example::
-    
+Inspect Available Tasks
+------------------------------------------------------------------------------
+
+To list the tasks available for the ``Inference`` driver:
+
+.. code-block:: bash
+
     $ make inference config=eagle.yaml task=?
     + uw execute --module eagle/inference/inference.py --classname Inference
     [2026-02-27T23:58:43]    ERROR Available tasks:
@@ -29,10 +36,15 @@ For example::
     [2026-02-27T23:58:43]    ERROR   validate
     [2026-02-27T23:58:43]    ERROR     Validate the UW driver config.
 
-For example, the ``provisioned_rundir`` task would provision the run directory with all its required content, but 
+The ``provisioned_rundir`` task would provision the run directory with all its required content, but 
 would not execute the ``anemoi-inference`` component. The ``run`` task would fully execute inference.
 
-To invoke the ``Inference`` driver's ``runscript`` task, provisioning only the component's runscript::
+Provision a Runscript
+------------------------------------------------------------------------------
+
+To invoke the ``Inference`` driver's ``runscript`` task, provisioning only the component's runscript:
+
+.. code-block:: bash
 
     $ make inference config=eagle.yaml task=runscript
     + uw execute --config-file eagle.yaml --module eagle/inference/inference.py --classname Inference --task runscript --batch
@@ -42,13 +54,18 @@ To invoke the ``Inference`` driver's ``runscript`` task, provisioning only the c
     [2026-02-27T22:35:11]     INFO inference runscript.inference: Executing
     [2026-02-27T22:35:11]     INFO inference runscript.inference: Ready
 
-The previously non-existent ``run/<expname>inference/`` directory now contains::
+The previously non-existent ``run/<expname>/inference/`` directory now contains:
+
+.. code-block:: text
 
     $ tree run/<expname>/inference/
-    run/<expname>inference/
-    └── runscript.inference
+    run/<expname>/inference/
+    \--- runscript.inference
 
     1 directory, 1 file
+
+Editing a Provisioned Runscript
+------------------------------------------------------------------------------
 
 Since ``uwtools`` driver tasks are idempotent, now that ``runscript.inference`` exists, it will not be overwritten 
 by subsequent driver invocations. So, it could now be manually edited to e.g. add debugging statements, and 
