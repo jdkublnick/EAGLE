@@ -1,0 +1,30 @@
+/* important prevents the common CSS stylesheets from overriding
+   this as on RTD they are loaded after this stylesheet */
+
+.wy-table-responsive table td {
+    white-space: normal !important;
+}
+
+.wy-nav-content {
+    max-width: 100% !important;
+}
+
+.wy-table-responsive {
+    overflow: visible !important;
+}
+
+.rst-content .highlight-bash,
+.rst-content .highlight-bash .highlight,
+.rst-content .highlight-bash pre {
+    background: #eefbd0 !important;
+}
+
+.rst-content .highlight-bash {
+    border: 1px solid #d6e9a8;
+}
+
+/* Darken navbar blue background for contrast */
+.wy-side-nav-search,
+.wy-nav-top {
+    background: #2779b0;
+}

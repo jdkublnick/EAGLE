@@ -1,94 +1,101 @@
-=================
+.. _Quickstart:
+
+====================
 Quickstart Guide
-=================
+====================
 
-This section provides a recipe for an end-to-end run of nested-EAGLE on Ursa. As of right now the only supported 
-platform is Ursa. Future development will include additional platforms. Stay tuned! 
+This section provides a recipe for an end-to-end run of nested-EAGLE on Ursa. At present, Ursa is the only supported 
+platform. Future development will include additional platforms.
 
-GNU ``make`` version 3.82 or higher is requred.
+.. note::
 
-Complete the steps below in the ``src/`` directory.
+   GNU ``make`` version 3.82 or higher is required.
 
-**1. Create all environments**
+**Complete the following steps from the ``src/`` directory.**
 
-Run::
-    
-    make env cudascript=ursa
+.. _QuickstartWorkflow:
 
-This step creates the runtime software environment, comprising conda virtual environments to support data prep, 
-training, inference, and verification. The ``conda/`` subdirectory it creates is self-contained and can be removed 
-and recreated by running the ``make env`` command again, as long as pipeline steps are not currently running.
+Building and Running EAGLE
+=========================================
 
-Developers who will be modifying Python driver code should replace ``make env`` with ``make devenv``, which will 
-create the same environments but also install additional code-quality tools for formatting, linting, shellchecking, 
-typechecking, and YAML linting.
- 
-**2. Create the EAGLE YAML config**
+#. Create all environments
 
-Run::
-    
-    make config compose=base:ursa >eagle.yaml
+   .. code-block:: bash
 
-The ``config`` target operates on ``.yaml`` files in the ``config/`` directory, so this command composes ``config/base.yaml`` 
-and ``config/ursa.yaml`` and redirects the composed config into ``eagle.yaml``.
+      make env cudascript=ursa
 
-**3. Set the app.base value in eagle.yaml to the absolute path to the current (src/) directory.**
+   This step creates the runtime software environment, comprising conda virtual environments to support data preparation, 
+   training, inference, and verification. The ``conda/`` subdirectory it creates is self-contained and can be removed 
+   and recreated by running the ``make env`` command again, as long as pipeline steps are not currently running.
 
-The run directories from subsequent steps, along with the output of those steps, will be created in the ``run/<expname>`` 
-subdirectory of ``app.base``, where ``<expname>`` is the value of ``app.experiment_name``.
+   Developers who will be modifying Python driver code should replace ``make env`` with ``make devenv``, which will 
+   create the same environments but also install additional code-quality tools for formatting, linting, shellchecking, 
+   typechecking, and YAML linting.
 
-**4. Create training data**
+#. Create the EAGLE YAML config
 
-Run::
-    
-    make data config=eagle.yaml
+   .. code-block:: bash
 
-This step provisions data required for training and inference. The ``data`` target delegates to targets 
-``grids-and-meshes``, ``zarr-gfs``, and ``zarr-hrrr``, which can also be run individually (e.g. ``make grids-and-meshes config=eagle.yaml``), but note that ``grids-and-meshes``, which runs locally, must be run first. The ``zarr-gfs`` and ``zarr-hrrr`` targets can be run in quick succession, as they submit batch jobs: Do not proceed until their batch jobs complete successfully (see the files ``run/<expname>/data/*.out``).
+      make config compose=base:ursa >eagle.yaml
 
-**5. Train the ML model.**
+   The ``config`` target operates on ``.yaml`` files in the ``config/`` directory, so this command composes ``config/base.yaml`` 
+   and ``config/ursa.yaml`` and redirects the composed config into ``eagle.yaml``.
 
-Run::
-    
-    make training config=eagle.yaml
+#. Set the ``app.base`` value in ``eagle.yaml`` to the absolute path to the current ``src/`` directory.
 
-This step trains a model using data provisioned by the previous step. It submits a batch job: Do not proceed until 
-the batch job completes successfully (see the file ``run/<expname>training/runscript.training.out``).
+   The run directories from subsequent steps, along with the output of those steps, will be created in the ``run/<expname>`` 
+   subdirectory of ``app.base``, where ``<expname>`` is the value of ``app.experiment_name``.
 
-**6. Run inference**
+#. Create training data
 
-Run::
-    
-    make inference config=eagle.yaml
+   .. code-block:: bash
 
-This step performs inference, producing a forecast. It submits a batch job: Do not proceed until the batch job 
-completes successfully (see the file ``run/<expname>inference/runscript.inference.out``.)
+      make data config=eagle.yaml
 
-**7. Postprocess model output**
+   This step provisions data required for training and inference. The ``data`` target delegates to targets 
+   ``grids-and-meshes``, ``zarr-gfs``, and ``zarr-hrrr``, which can also be run individually (e.g. ``make grids-and-meshes config=eagle.yaml``), but note that ``grids-and-meshes``, which runs locally, must be run first. The ``zarr-gfs`` and ``zarr-hrrr`` targets can be run in quick succession, as they submit batch jobs: Do not proceed until their batch jobs complete successfully (see the files ``run/<expname>/data/*.out``).
 
-Run:
+#. Train the ML model
 
-.. code-block:: text
-    
-    make prewxvx-global config=eagle.yaml
-    make prewxvx-lam config=eagle.yaml
+   .. code-block:: bash
 
-These steps prepare forecast output from the previous step for verification by ``wxvx``. They run locally, so it is 
-safe to proceed when the commands return. See the files ``run/<expname>vx/prewxvx/{global,lam}/runscript.prewxvx-*.out`` for details.
+      make training config=eagle.yaml
 
-**8. Model verification**
+   This step trains a model using data provisioned by the previous step. It submits a batch job; do not proceed until 
+   the batch job completes successfully (see the file ``run/<expname>training/runscript.training.out``).
 
-Run:
+#. Run inference
 
-.. code-block:: text
-    
-    make vx-grid-global config=eagle.yaml
-    make vx-grid-lam config=eagle.yaml
-    make vx-obs-global config=eagle.yaml
-    make vx-obs-lam config=eagle.yaml
+   .. code-block:: bash
 
-These steps perform verification, either of the ``global`` or ``lam`` forecasts, and against gridded analyses (``*-grid-*``) or 
-prepbufr observations (``*-obs-*``) as truth. Each submits a batch job, so the four ``make`` commands can be run in quick 
-succession to get all the batch jobs running in parallel. When each batch job completes, MET ``.stat`` files and ``.png`` 
-plot files can be found under the ``stats/`` and ``plots/`` subdirectories of ``run/<expname>vx/grid2{grid,obs}/{global,lam}/run/``. 
-The files ``run/<expname>vx/*.log`` contain the logs from each verification run.
+      make inference config=eagle.yaml
+
+   This step performs inference, producing a forecast. It submits a batch job; do not proceed until the batch job 
+   completes successfully (see the file ``run/<expname>inference/runscript.inference.out``.)
+
+#. Postprocess model output
+
+   .. code-block:: bash
+      
+      make prewxvx-global config=eagle.yaml
+      make prewxvx-lam config=eagle.yaml
+
+   These steps prepare forecast output from the previous step for verification by ``wxvx``. They run locally, so it is 
+   safe to proceed when the commands return. See the files ``run/<expname>vx/prewxvx/{global,lam}/runscript.prewxvx-*.out`` for details.
+
+#. Model verification
+
+.. _QuickstartVerification:
+
+   .. code-block:: bash
+      
+      make vx-grid-global config=eagle.yaml
+      make vx-grid-lam config=eagle.yaml
+      make vx-obs-global config=eagle.yaml
+      make vx-obs-lam config=eagle.yaml
+
+   These steps perform verification of the ``global`` or ``lam`` forecasts against gridded analyses (``*-grid-*``) or 
+   PrepBUFR observations (``*-obs-*``) as truth. Each submits a batch job, so the four ``make`` commands can be run in quick 
+   succession to get all the batch jobs running in parallel. When each batch job completes, MET ``.stat`` files and ``.png`` 
+   plot files can be found under the ``stats/`` and ``plots/`` subdirectories of ``run/<expname>vx/grid2{grid,obs}/{global,lam}/run/``. 
+   The files ``run/<expname>vx/*.log`` contain the logs from each verification run.
