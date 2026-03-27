@@ -1,9 +1,16 @@
-=================
+==============================================================================
 Support
-=================
+==============================================================================
 
-If you think there is a bug in the code or have any questions, please 
-`submit an issue <https://github.com/NOAA-EPIC/EAGLE/issues/new>`_ with a 
-sufficient description of the problem or question.
+Issues and Questions
+------------------------------------------------------------------------------
 
-You can also email support.epic@noaa.gov for further support.
+If you encounter a bug or have a question about using EAGLE, please
+`open an issue <https://github.com/NOAA-EPIC/EAGLE/issues/new>`_ and include
+enough detail for the team to understand and reproduce the problem when
+applicable.
+
+Additional Help
+------------------------------------------------------------------------------
+
+For additional assistance, contact ``support.epic@noaa.gov``.
