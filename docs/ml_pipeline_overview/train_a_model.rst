@@ -17,7 +17,7 @@ See anemoi documentation for further information:
 
 anemoi was created by the European Center for Medium-Range Weather Forecasting.
 
-Helpful quick tips for using anemoi-core
+anemoi-core Quick Tips
 ----------------------------------------------
 
 Throughout this repository, all anemoi configs are typically provided for you and should work out of the box. 

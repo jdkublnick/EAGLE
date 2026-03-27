@@ -21,7 +21,7 @@ See the `wxvx repository <https://github.com/maddenp-cu/wxvx>`_ for further info
 
 **wxvx** was created by Paul Madden and Emily Carpenter at CIRES/NOAA GSL.
 
-Helpful Quick Tips for Using wxvx
+wxvx Quick Tips
 ----------------------------------------------------
 
 * Use the provided conda environment for a fully configured MET setup.

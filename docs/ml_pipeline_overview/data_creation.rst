@@ -82,7 +82,7 @@ For more information, see the `ufs2arco documentation <https://ufs2arco.readthed
 
 .. _Ufs2ArcoTips:
 
-Helpful Tips for ufs2arco
+ufs2arco Quick Tips
 ------------------------------------------------------------------------------
 
 .. _ChooseDates:

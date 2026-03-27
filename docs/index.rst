@@ -27,8 +27,9 @@ Table of Contents
    user_guide/drivers
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: ML Pipeline Overview
+   :numbered:
 
    ml_pipeline_overview/data_creation
    ml_pipeline_overview/train_a_model
