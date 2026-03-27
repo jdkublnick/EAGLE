@@ -2,13 +2,18 @@
 Support
 ==============================================================================
 
-Issues and Questions
+Issues
 ------------------------------------------------------------------------------
 
-If you encounter a bug or have a question about using EAGLE, please
+If you encounter a problem, please
 `open an issue <https://github.com/NOAA-EPIC/EAGLE/issues/new>`_ and include
-enough detail for the team to understand and reproduce the problem when
-applicable.
+enough detail for the team to understand and reproduce the problem.
+
+Questions and Answers
+------------------------------------------------------------------------------
+
+If you have a question about using EAGLE, please use the
+`Q&A Discussions page <https://github.com/NOAA-EPIC/EAGLE/discussions/categories/q-a>`_.
 
 Additional Help
 ------------------------------------------------------------------------------
