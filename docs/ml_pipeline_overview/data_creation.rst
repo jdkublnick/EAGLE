@@ -12,6 +12,23 @@ ufs2arco Overview
 :term:`EAGLE` uses :term:`ufs2arco` to generate training, validation, and test datasets.
 The ``ufs2arco`` package preprocesses weather data and writes it in a
 :term:`Zarr` format suitable for machine learning workflows.
+At a high level, the ufs2arco pipeline loads and transforms raw meteorological
+data into an Analysis Ready, Cloud Optimized (ARCO) Zarr format.
+
+The workflow is built around three key components:
+
+* Data sources: input datasets from systems such as NOAA :term:`GFS` and
+  :term:`HRRR`, or other forecast and reanalysis archives
+* Transforms: user-defined processing steps such as regridding and subsetting
+* Targets: output data stored in Zarr format
+
+  * ``base``: a general format for scientific analysis with clear variables
+    and dimensions
+  * ``anemoi``: a layout tailored for machine learning workflows, compatible
+    with the anemoi framework
+
+Overall, ufs2arco enables flexible, scalable, and fast preparation of large
+meteorological datasets for both research and machine learning workflows.
 
 To begin, create a :term:`YAML` recipe file named ``recipe.yaml``. A simplified
 example is shown below:

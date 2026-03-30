@@ -10,6 +10,13 @@ This model builds on previous work from Met Norway (Nipen et al., 2024,
 arXiv:2409.02891) by combining lower-resolution global data with
 higher-resolution data over an area of interest.
 
+.. image:: ../images/nested-eagle-domain.jpg
+   :alt: Overview of the nested-EAGLE domain
+   :width: 75%
+   :align: center
+
+.. centered:: Overview of the nested-EAGLE domain
+
 nested-EAGLE configurations were provided by Tim Smith at NOAA Physical
 Sciences Laboratory.
 
@@ -26,6 +33,7 @@ At a glance:
 * :term:`HRRR` is conservatively regridded to 15 km.
 * The training period spans ``2015-02-01T06`` through ``2023-01-31T18``.
 * The validation period spans ``2023-02-01T06`` through ``2024-01-31T18``.
+* The testing period spans ``2024-02-01T06`` through ``2025-01-31T18``.
 
 .. list-table:: nested-EAGLE input variables by category
    :widths: 20 80
