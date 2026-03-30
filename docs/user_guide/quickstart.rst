@@ -11,7 +11,7 @@ platform. Future development will include additional platforms.
 
    GNU ``make`` version 3.82 or higher is required.
 
-**Complete the following steps from the ``src/`` directory.**
+**Complete the following steps from the** ``src/`` **directory.**
 
 .. _QuickstartWorkflow:
 
@@ -64,7 +64,7 @@ Building and Running :term:`EAGLE`
       make training config=eagle.yaml
 
    This step trains a model using data provisioned by the previous step. It submits a batch job; do not proceed until 
-   the batch job completes successfully (see the file ``run/<expname>training/runscript.training.out``).
+   the batch job completes successfully (see the file ``run/<expname>/training/runscript.training.out``).
 
 #. Run inference
 
@@ -73,7 +73,7 @@ Building and Running :term:`EAGLE`
       make inference config=eagle.yaml
 
    This step performs inference, producing a forecast. It submits a batch job. Do not proceed until the batch job 
-   completes successfully (see the file ``run/<expname>inference/runscript.inference.out``.)
+   completes successfully (see the file ``run/<expname>/inference/runscript.inference.out``.)
 
 #. Postprocess model output
 
@@ -83,7 +83,7 @@ Building and Running :term:`EAGLE`
       make prewxvx-lam config=eagle.yaml
 
    These :term:`PreWXVX` steps prepare forecast output from the previous step for verification by :term:`wxvx`. They run locally, so it is 
-   safe to proceed when the commands return. See the files ``run/<expname>vx/prewxvx/{global,lam}/runscript.prewxvx-*.out`` for details.
+   safe to proceed when the commands return. See the files ``run/<expname>/vx/prewxvx/{global,lam}/runscript.prewxvx-*.out`` for details.
 
 #. Model verification
 
@@ -99,7 +99,7 @@ Building and Running :term:`EAGLE`
    These steps perform verification of the ``global`` or :term:`LAM` forecasts against gridded analyses (``*-grid-*``) or 
    PrepBUFR observations (``*-obs-*``) as truth. Each submits a batch job, so the four ``make`` commands can be run in quick 
    succession to get all the batch jobs running in parallel. When each batch job completes, MET ``.stat`` files and ``.png`` 
-   plot files can be found under the ``stats/`` and ``plots/`` subdirectories of ``run/<expname>vx/grid2{grid,obs}/{global,lam}/run/``. 
+   plot files can be found under the ``stats/`` and ``plots/`` subdirectories of ``run/<expname>/vx/grid2{grid,obs}/{global,lam}/run/``. 
    The files ``run/<expname>vx/*.log`` contain the logs from each verification run.
 
 #. Make additional :term:`visualization` outputs
@@ -111,4 +111,4 @@ Building and Running :term:`EAGLE`
       make vis-obs-global config=eagle.yaml
       make vis-obs-lam config=eagle.yaml
 
-   These steps will first call ``eagle-tools``'s ``postwxvx`` tool to create and save a series of netCDF files with all relevant statistics in the corresponding ``wxvx`` directory for each variable. It will then create a series of plots in the ``run/<expname>visualization/grid2{grid,obs}/{global,lam}/`` directory.
+   These steps will first call ``eagle-tools``'s ``postwxvx`` tool to create and save a series of netCDF files with all relevant statistics in the corresponding ``wxvx`` directory for each variable. It will then create a series of plots in the ``run/<expname>/visualization/grid2{grid,obs}/{global,lam}/`` directory.
