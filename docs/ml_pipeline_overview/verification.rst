@@ -35,7 +35,7 @@ wxvx Quick Tips
 * Use the ``vx-obs-*`` targets to verify against PrepBUFR observations.
 * The ``global`` and ``lam`` targets are independent, so they can be run in
   parallel.
-* Check the ``run/<expname>vx/*.log`` files if a verification job fails.
+* Check the ``run/<expname>/vx/*.log`` files if a verification job fails.
 
 
 Running Verification
