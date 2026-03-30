@@ -9,7 +9,7 @@ Create Training Data
 ufs2arco Overview
 ------------------------------------------------------------------------------
 
-EAGLE uses :term:`ufs2arco` to generate training, validation, and test datasets.
+:term:`EAGLE` uses :term:`ufs2arco` to generate training, validation, and test datasets.
 The ``ufs2arco`` package preprocesses weather data and writes it in a
 :term:`Zarr` format suitable for machine learning workflows.
 
