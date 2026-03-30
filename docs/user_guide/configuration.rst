@@ -35,11 +35,11 @@ Some configuration parameters are common across ``uwtools``-based component driv
 configuration blocks:
 
 ``execution``
-   The `execution <https://uwtools.readthedocs.io/en/stable/sections/user_guide/yaml/execution.html>`_ block provides
+   The `execution <https://uwtools.readthedocs.io/en/main/sections/user_guide/yaml/components/execution.html#the-execution-block>`_ block provides
    information required to correctly execute the component.
 
 ``platform``
-   The `platform <https://uwtools.readthedocs.io/en/stable/sections/user_guide/yaml/platform.html>`_ block provides
+   The `platform <https://uwtools.readthedocs.io/en/main/sections/user_guide/yaml/components/platform.html#the-platform-block>`_ block provides
    information about the system EAGLE is running on.
 
 ``rundir``

@@ -65,7 +65,7 @@ Run ``make`` with no arguments to list available targets.
      - inference
      - prewxvx
    * - prewxvx-lam
-     - Postprocesses :term:`LAM` inference output
+     - Postprocesses LAM inference output
      - inference
      - prewxvx
    * - vx-grid-global
@@ -83,11 +83,11 @@ Run ``make`` with no arguments to list available targets.
    * - vx-obs-lam
      - Verify LAM against obs
      - prewxvx-lam
-     - :term:`wxvx`
+     - wxvx
    * - vis-grid-global
      - Visualize global VX results against gridded analysis
      - vx-grid-global
-     - :term:`visualization`
+     - visualization
    * - vis-grid-lam
      - Visualize LAM VX results against gridded analysis
      - vx-grid-lam
