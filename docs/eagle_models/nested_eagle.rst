@@ -62,9 +62,9 @@ Model Architecture
 
 The nested-EAGLE model uses the following architecture:
 
-* Encoder: Graph Transformer
-* Processor: Shifted Window Transformer with 512 channels
-* Decoder: Graph Transformer
+* Encoder and Decoder: Graph Transformer
+* Processor: Sliding Window Transformer
+* Latent space is a 4x coarsened data space
 
 The graph configuration connects targets to nodes through nearest neighbors in
 the encoder and decoder, with ``encoder_knn=12`` and ``decoder_knn=3``.

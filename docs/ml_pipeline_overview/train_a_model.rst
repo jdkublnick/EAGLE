@@ -64,19 +64,3 @@ change.
 If you have questions about the available model configurations within
 anemoi-core, see the `anemoi-training documentation
 <https://anemoi.readthedocs.io/projects/training/en/latest/>`_.
-
-.. _GenerateConfigs:
-
-Generating Configs Yourself
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you wish to use new configs and configure a model yourself, run the
-following command while in a conda environment that contains the anemoi
-packages:
-
-.. code-block:: bash
-
-    anemoi-training config generate
-
-This will generate new anemoi configs for you. If you have questions about the
-configs, see the `anemoi-training documentation <https://anemoi.readthedocs.io/projects/training/en/latest/>`_.
