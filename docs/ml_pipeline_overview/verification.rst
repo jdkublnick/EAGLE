@@ -75,7 +75,7 @@ The most useful outputs are:
 
 * ``stats/`` for MET ``.stat`` files
 * ``plots/`` for generated ``.png`` plots
-* ``run/<expname>vx/*.log`` for verification logs
+* ``run/<expname>/vx/*.log`` for verification logs
 
 
 Additional Visualization
