@@ -111,4 +111,4 @@ Building and Running :term:`EAGLE`
       make vis-obs-global config=eagle.yaml
       make vis-obs-lam config=eagle.yaml
 
-   These steps will first call ``eagle-tools``'s ``postwxvx`` tool to create and save a series of netCDF files with all relevant statistics in the corresponding ``wxvx`` directory for each variable. It will then create a series of plots in the ``run/<expname>visualization/grid2{grid,obs}/{global,lam}/`` directory.
+   These steps will first call ``eagle-tools``'s ``postwxvx`` tool to create and save a series of netCDF files with all relevant statistics in the corresponding ``wxvx`` directory for each variable. It will then create a series of plots in the ``run/<expname>/visualization/grid2{grid,obs}/{global,lam}/`` directory.
