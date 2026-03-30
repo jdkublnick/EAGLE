@@ -9,7 +9,7 @@ Contributing
 Development
 ------------------------------------------------------------------------------
 
-First, clone the main repository and create a branch on the machine where you will 
+First, clone the main :term:`EAGLE` repository and create a branch on the machine where you will 
 do the development work. Contributions should be submitted as pull requests from a 
 branch separate from the main branch.
 
@@ -22,7 +22,8 @@ branch separate from the main branch.
 
     git checkout -b <branch-name>
 
-To build the runtime virtual environments **and** install all required development packages in each environment:
+To build the runtime virtual environments **and** install all required
+development packages in each environment:
 
 .. code-block:: bash
 
@@ -38,14 +39,15 @@ After successful completion, the following ``make`` targets will be available:
     make lint       # run a linter on Python code
     make shellcheck # run a checker on Bash scripts
     make typecheck  # run a typechecker on Python code
-    make yamllint   # run a linter on YAML configs
+    make yamllint   # run a linter on :term:`YAML` configs
     make test       # all of the above except formatting
 
 The ``lint`` and ``typecheck`` targets accept an optional ``env=<name>`` key-value pair that, if provided, will 
 restrict the tool to the code associated with a particular virtual environment. For example, ``make lint env=data`` 
 will lint only the code associated with the ``data`` environment. If no ``env`` value is provided, all code will be tested.
 
-For each ``make`` target that executes an EAGLE driver, the following files will be created in the appropriate run directory:
+For each ``make`` target that executes an EAGLE driver, the following
+files will be created in the appropriate run directory:
 
 - ``runscript.<target>``: The script to run the core component of the pipeline step. A runscript that submits a batch job will contain batch-system directives. These scripts are self-contained and can also be manually executed (or passed to e.g. ``sbatch`` if they contain batch directives) to force re-execution, potentially after manual edits for debugging or experimentation purposes.
 - ``runscript.<target>.out``: The captured ``stdout`` and ``stderr`` of the batch job.

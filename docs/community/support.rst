@@ -18,7 +18,7 @@ enough detail for the team to understand and reproduce the problem.
 Questions and Answers
 ------------------------------------------------------------------------------
 
-If you have a question about using EAGLE, please use the
+If you have a question about using :term:`EAGLE`, please use the
 `Q&A Discussions page <https://github.com/NOAA-EPIC/EAGLE/discussions/categories/q-a>`_.
 
 .. _Help:
