@@ -13,4 +13,4 @@ We use the eagle-tools package for postprocessing model output and visualizing m
 eagle-tools Quick Tips
 --------------------------------------------------
 
-Insert tips
+Coming soon!

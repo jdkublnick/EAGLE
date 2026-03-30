@@ -7,64 +7,93 @@ Verify Model Performance
 wxvx Overview
 ----------------------------------------------------
 
-wxvx: A Lightweight MET-Driven Verification Workflow
+:term:`EAGLE` uses :term:`wxvx` to verify model forecasts against either gridded
+analyses or point observations.
 
-NOAA is developing **wxvx**, a Python-based workflow that streamlines verification of rapidly evolving AI-based weather models.  
-Traditional tools like **MET** are powerful but can be difficult to install, configure, and adapt to non-standard AI datasets.  
+Within the EAGLE workflow, ``wxvx`` is responsible for running the underlying
+verification tasks and producing the statistics and plots used to evaluate
+forecast performance. In practice, this means you can compare both ``global``
+and :term:`LAM` forecasts against:
 
-**wxvx** drives MET end-to-end—handling baseline data acquisition, CF-Conventions metadata decoration, statistics generation, and simple plotting—using a modular, dependency-graph design and familiar Python packages such as ``xarray``, ``requests``, and ``uwtools``.
+* gridded analyses with MET's
+  `grid_stat <https://metplus.readthedocs.io/projects/met/en/latest/Users_Guide/grid-stat.html>`_
+* point observations with MET's
+  `point_stat <https://metplus.readthedocs.io/projects/met/en/latest/Users_Guide/point-stat.html>`_
 
-Distributed as a **conda** package and paired with **met2go** (pre-built MET executables and core data), **wxvx** installs in minutes on Linux systems—from HPCs to cloud instances to laptops—without requiring administrator support.  
-It has already been used to verify global and regional AI forecasts and is equally useful for non-AI verification tasks. Documentation covers capabilities, design principles, use cases, and future plans.
+Before running verification, complete the preprocessing steps described in the
+:ref:`Quickstart Guide <QuickstartVerification>` so that forecast output has
+already been prepared for ``wxvx``.
 
-See the `wxvx repository <https://github.com/maddenp-cu/wxvx>`_ for further information.
-
-**wxvx** was created by Paul Madden and Emily Carpenter at CIRES/NOAA GSL.
+See the `wxvx repository <https://github.com/maddenp-cu/wxvx>`_ for further
+information about the project itself.
 
 wxvx Quick Tips
 ----------------------------------------------------
 
-* Use the provided conda environment for a fully configured MET setup.
-* Ensure forecast and baseline data follow CF-Conventions for best compatibility.
-* Refer to ``wxvx --help`` for command-line usage examples.
-* Visit the `met2go documentation <https://github.com/maddenp-cu/met2go/blob/main/README.md>`_ for details about bundled MET executables and datasets.
+* Run the provided :term:`PreWXVX` steps before starting verification.
+* Use the ``vx-grid-*`` targets to verify against gridded analyses.
+* Use the ``vx-obs-*`` targets to verify against PrepBUFR observations.
+* The ``global`` and ``lam`` targets are independent, so they can be run in
+  parallel.
+* Check the ``run/<expname>vx/*.log`` files if a verification job fails.
 
 
-Installation
+Running Verification
 ~~~~~~~~~~~~~~~~~~~~~~
 
-This guide explains how to install **wxvx** using **Miniforge**, the conda-forge project’s lightweight implementation of Miniconda.  
-You can skip the first step if you already have a working **conda** installation.
-
-Currently supported platforms are **Linux aarch64** (ARM) and **Linux x86_64** (Intel/AMD).  
-The example below shows installation for **aarch64**. If your system uses Intel or AMD hardware, download the **x86_64** installer instead.
-
-Install Miniforge
-~~~~~~~~~~~~~~~~~~~~~~
+EAGLE provides four standard verification targets:
 
 .. code-block:: bash
 
-   wget https://github.com/conda-forge/miniforge/releases/download/25.3.0-3/Miniforge3-Linux-aarch64.sh
-   bash Miniforge3-Linux-aarch64.sh -bfp conda
-   rm Miniforge3-Linux-aarch64.sh
-   . conda/etc/profile.d/conda.sh
-   conda activate
+   make vx-grid-global config=eagle.yaml
+   make vx-grid-lam config=eagle.yaml
+   make vx-obs-global config=eagle.yaml
+   make vx-obs-lam config=eagle.yaml
 
-Install wxvx
+These commands submit batch jobs for:
+
+* ``grid-global``: global forecasts verified against gridded analyses
+* ``grid-lam``: limited-area forecasts verified against gridded analyses
+* ``obs-global``: global forecasts verified against point observations
+* ``obs-lam``: limited-area forecasts verified against point observations
+
+Because these are separate jobs, they can be launched in quick succession to
+run in parallel.
+
+
+Verification Output
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Create and activate a conda virtual environment with the latest **wxvx**.  
-If you are using a non-conda-forge conda installation, add the flags  
-``-c conda-forge --override-channels`` to the ``conda create`` command.
+When a verification job completes successfully, ``wxvx`` writes output beneath
+the corresponding verification run directory:
+
+.. code-block:: text
+
+   run/<expname>vx/grid2{grid,obs}/{global,lam}/run/
+
+The most useful outputs are:
+
+* ``stats/`` for MET ``.stat`` files
+* ``plots/`` for generated ``.png`` plots
+* ``run/<expname>vx/*.log`` for verification logs
+
+
+Additional Visualization
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+After verification is complete, you can generate additional postprocessed
+:term:`visualization` outputs with:
 
 .. code-block:: bash
 
-   conda create -y -n wxvx -c ufs-community -c paul.madden wxvx
-   conda activate wxvx
-   wxvx --version
+   make vis-grid-global config=eagle.yaml
+   make vis-grid-lam config=eagle.yaml
+   make vis-obs-global config=eagle.yaml
+   make vis-obs-lam config=eagle.yaml
 
-When activated, the environment automatically includes the **met2go** package,  
-which provides **MET**, select **METplus** executables, and supporting data files.  
+These targets run ``eagle-tools postwxvx`` to create netCDF summary files and
+additional plots under:
 
-For more details, see the `met2go documentation <https://github.com/maddenp-cu/met2go/blob/main/README.md>`_.
+.. code-block:: text
 
+   run/<expname>visualization/grid2{grid,obs}/{global,lam}/
