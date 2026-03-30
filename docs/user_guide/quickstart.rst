@@ -11,7 +11,7 @@ platform. Future development will include additional platforms.
 
    GNU ``make`` version 3.82 or higher is required.
 
-**Complete the following steps from the ``src/`` directory.**
+**Complete the following steps from the** ``src/`` **directory.**
 
 .. _QuickstartWorkflow:
 
