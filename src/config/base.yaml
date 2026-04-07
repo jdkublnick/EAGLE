@@ -42,6 +42,7 @@ inference:
   execution:
     batchargs:
       <<: *gpu-batchargs
+      export: false
       memory: 16G
       rundir: '{{ inference.rundir }}'
       walltime: '00:10:00'
@@ -441,6 +442,7 @@ training:
   execution:
     batchargs:
       <<: *gpu-batchargs
+      export: false
       memory: 128G
       rundir: '{{ training.rundir }}'
       walltime: '00:30:00'
@@ -642,6 +644,7 @@ vx:
     execution:
       batchargs: &wxvx-common-batchargs
         cores: 1
+        export: false
         partition: '{{ app.partitions.netaccess }}'
         walltime: '00:30:00'
       envcmds:
@@ -830,24 +833,27 @@ vx:
           regrid: !dict '{{ vx.grid2obs.global.wxvx.wxvx.regrid }}'
 zarrs:
   common:
-    execution: &zarrs-common-execution
+    envcmds:
+      - source {{ val.conda }}/etc/profile.d/conda.sh
+      - conda activate data
+      - set -ex
+    execution:
       batchargs:
         cores: 4
+        export: false
         partition: '{{ app.partitions.netaccess }}'
         rundir: '{{ val.data.rundir }}'
         walltime: '00:10:00'
-      envcmds:
-        - source {{ val.conda }}/etc/profile.d/conda.sh
-        - conda activate data
-        - set -ex
-      executable: ufs2arco ufs2arco-gfs.yaml --overwrite
+      envcmds: !list '{{ zarrs.common.envcmds }}'
+      mpiargs: []
       mpicmd: '{{ "srun" if app.platform.scheduler == "slurm" else "mpiexec" }}'
   gfs:
     zarr:
       execution:
-        <<: *zarrs-common-execution
         batchargs: !dict '{{ zarrs.common.execution.batchargs }}'
+        envcmds: !list '{{ zarrs.common.execution.envcmds }}'
         executable: ufs2arco ufs2arco-gfs.yaml --overwrite
+        mpiargs: !list '{{ zarrs.common.execution.mpiargs }}'
         mpicmd: '{{ zarrs.common.execution.mpicmd }}'
       name: gfs
       ufs2arco:
@@ -866,9 +872,10 @@ zarrs:
   hrrr:
     zarr:
       execution:
-        <<: *zarrs-common-execution
         batchargs: !dict '{{ zarrs.common.execution.batchargs }}'
+        envcmds: !list '{{ zarrs.common.execution.envcmds }}'
         executable: ufs2arco ufs2arco-hrrr.yaml --overwrite
+        mpiargs: !list '{{ zarrs.common.execution.mpiargs }}'
         mpicmd: '{{ zarrs.common.execution.mpicmd }}'
       name: hrrr
       ufs2arco:
