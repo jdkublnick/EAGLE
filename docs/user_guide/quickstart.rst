@@ -25,7 +25,7 @@ Building and Running EAGLE
 
    .. code-block:: bash
 
-      git clone https://github.com/NOAA-EPIC/EAGLE.git
+      git clone --branch release/public-v1.0.0 https://github.com/NOAA-EPIC/EAGLE.git
       cd EAGLE/src
 
 #. Create all environments
