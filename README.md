@@ -11,13 +11,13 @@ This repository contains configuration and driver code for running an end-to-end
 
 ## Documentation
 
-To learn about EAGLE and how to use the provided workflows, please see our [documentation](https://epic-eagle.readthedocs.io/en/latest/).
+To learn about EAGLE and how to use the provided workflows, please see our [documentation](https://epic-eagle.readthedocs.io/en/v1.0.0/).
 
 ## Collaboration
 
 - If you encounter a problem using EAGLE that appears to be a bug, please open an [issue](https://github.com/NOAA-EPIC/EAGLE/issues) with us.
 - For free-form sharing of ideas, questions, tips and tricks, etc., please start or join a [discussion](https://github.com/NOAA-EPIC/EAGLE/discussions).
-- To contribute to the codebase, please see our [docs](https://epic-eagle.readthedocs.io/en/latest/contributing.html).
+- To contribute to the codebase, please see our [docs](https://epic-eagle.readthedocs.io/en/v1.0.0/contributing.html).
 
 ## Acknowledgments
 
@@ -35,3 +35,7 @@ wxvx: Paul Madden (NOAA Global Systems Laboratory/Cooperative Institute for Rese
 
 eagle-tools: Tim Smith (NOAA Physical Sciences Laboratory)
 - [Github](https://github.com/NOAA-PSL/eagle-tools)
+
+## Citation 
+
+UFS Development Team, & NOAA AI for Numerical Weather Prediction (AI4NWP) Working Group. (2026, Apr. 22). nested-EAGLE (Experimental AI Global and Limited-area Ensemble Forecast System) (Version v1.0.0). Zenodo. https://doi.org/10.5281/zenodo.19672026

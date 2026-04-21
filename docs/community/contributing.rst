@@ -9,13 +9,13 @@ Contributing
 Development
 ------------------------------------------------------------------------------
 
-First, clone the main :term:`EAGLE` repository and create a branch on the machine where you will 
-do the development work. Contributions should be submitted as pull requests from a 
-branch separate from the main branch.
+First, clone the :term:`EAGLE` repository's ``release/public-v1.0.0`` branch and create a branch on the machine where you will
+do the development work. Contributions should be submitted as pull requests from a
+branch separate from the release branch.
 
 .. code-block:: text
 
-    git clone https://github.com/NOAA-EPIC/EAGLE.git
+    git clone --branch release/public-v1.0.0 https://github.com/NOAA-EPIC/EAGLE.git
     cd EAGLE
 
 .. code-block:: text
@@ -94,7 +94,7 @@ Contributions to the ``EAGLE`` project are made through a fork and pull request 
 #. Create or identify a GitHub issue to document the proposed change.
 #. Fork the `EAGLE repository <https://github.com/NOAA-EPIC/EAGLE>`_ into your personal GitHub account.
 #. Clone your fork onto your development system.
-#. Create a branch in your clone for the change. All development should take place on a branch, not on ``main``.
+#. Create a branch in your clone for the change. All development should take place on a branch, not directly on ``release/public-v1.0.0``.
 #. Make, commit, and push your changes to that branch in your fork.
 #. Open a pull request to merge your changes into the upstream repository.
 
