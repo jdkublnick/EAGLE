@@ -10,10 +10,12 @@ This release complements the Environmental Modeling Center's (EMC) GraphCast‑b
 
 The nested‑EAGLE application is designed for ML model training on both:
 
-- a global domain (~25 km)
+- a global domain (~25 km or 1 degree)
 - a nested CONUS domain (~6 km or 15 km)
 
 It produces atmosphere‑only forecasts for multiple variables.
+
+The setup currently provided in this repository is for running the 15 km / 1-degree version of nested-EAGLE.
 
 This initial release is supported on the NOAA Research and Development High Performance Computing System (RDHPCS) Ursa, which provides the GPU resources required for the EAGLE ML model training workflow. Advanced users may replicate the workflow on other HPC platforms. Future releases will expand support to native Microsoft Azure cloud environments.
 

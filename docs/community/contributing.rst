@@ -86,21 +86,20 @@ Pull Requests
 
 .. _ForkPR:
 
-Fork and PR Overview
+Branch and PR Overview
 ==============================================================================
 
-Contributions to the ``EAGLE`` project are made through a fork and pull request model. GitHub provides a thorough overview in their `Contributing to a project quickstart <https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project>`_, but the process for EAGLE can be summarized as:
+Contributions to the ``EAGLE`` project should currently be made through a branch and pull request model in the upstream ``NOAA-EPIC/EAGLE`` repository. Pull request CI does not currently run for branches opened from outside forks. GitHub provides a thorough overview of pull requests in their `Contributing to a project quickstart <https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project>`_, but the process for EAGLE can be summarized as:
 
 #. Create or identify a GitHub issue to document the proposed change.
-#. Fork the `EAGLE repository <https://github.com/NOAA-EPIC/EAGLE>`_ into your personal GitHub account.
-#. Clone your fork onto your development system.
+#. Clone the `EAGLE repository <https://github.com/NOAA-EPIC/EAGLE>`_ onto your development system.
 #. Create a branch in your clone for the change. All development should take place on a branch, not directly on ``release/public-v1.0.0``.
-#. Make, commit, and push your changes to that branch in your fork.
+#. Make, commit, and push your changes to that branch in the upstream repository.
 #. Open a pull request to merge your changes into the upstream repository.
 
 Open or review issues on the `EAGLE issues page <https://github.com/NOAA-EPIC/EAGLE/issues>`_.
 
-For future contributions, keep your fork current by syncing it with the upstream ``NOAA-EPIC/EAGLE`` repository.
+If you do not have permission to push a branch to ``NOAA-EPIC/EAGLE``, coordinate with a maintainer before opening a pull request so the branch can be hosted where CI will run.
 
 .. _DevTest:
 
